@@ -1,0 +1,4 @@
+Django==5.1.6           # The version you're using, e.g., Django==4.2
+django-bootstrap5==5.3.3
+django-crispy-forms==2.3
+
