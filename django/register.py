@@ -3,8 +3,11 @@
 def register(request):
     '''
     Method registers a new user account on the database.
+
     :param object request: User inputs data into the system.
+
     :returns: A message to the user confirming account creation.
+    
     :return type: str.
     '''
     if request.method == 'POST':
