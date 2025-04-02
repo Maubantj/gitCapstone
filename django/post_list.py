@@ -3,8 +3,11 @@ from django.views.generic import ListView,
 class PostListView(ListView):
     '''
     Create PostListView class which inherits from django's ListView.
+
     :param function ListView: Django's Listview.
+
     :returns: List of posts.
+    
     :return type: objects.
     '''
     # State the model.
