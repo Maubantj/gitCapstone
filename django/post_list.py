@@ -1,5 +1,6 @@
 from django.views.generic import ListView
 
+
 class PostListView(ListView):
     '''
     Create PostListView class which inherits from django's ListView.
