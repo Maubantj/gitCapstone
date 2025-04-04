@@ -1,0 +1,25 @@
+# Python binary files
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual environment
+myvenv/
+env/
+
+# Django SQLite database
+db.sqlite3
+
+# Environment variables
+.env
+
+# IDE settings and files
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Coverage reports
+.coverage
+htmlcov/

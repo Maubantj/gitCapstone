@@ -1,0 +1,243 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>blog.views &mdash; capstone 00.00.01 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=d7bb8d4d"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            capstone
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">capstone</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">capstone</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">blog.views</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for blog.views</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">django.shortcuts</span><span class="w"> </span><span class="kn">import</span> <span class="n">render</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.views.generic</span><span class="w"> </span><span class="kn">import</span> <span class="n">ListView</span><span class="p">,</span> <span class="n">DetailView</span><span class="p">,</span> <span class="n">CreateView</span><span class="p">,</span> <span class="n">UpdateView</span><span class="p">,</span> <span class="n">DeleteView</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Post</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth.mixins</span><span class="w"> </span><span class="kn">import</span> <span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">UserPassesTestMixin</span>
+
+<span class="c1"># Create classed below.</span>
+
+
+<div class="viewcode-block" id="PostListView">
+<a class="viewcode-back" href="../../blog.html#blog.views.PostListView">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PostListView</span><span class="p">(</span><span class="n">ListView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Create PostListView class which inherits from django&#39;s ListView.</span>
+<span class="sd">    :param function ListView: Django&#39;s Listview.</span>
+<span class="sd">    :returns: List of posts.</span>
+<span class="sd">    :return type: objects.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># State the model.</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Post</span>
+    <span class="c1"># Override django template naming convention which is</span>
+    <span class="c1"># &lt;app&gt;/&lt;model&gt;_&lt;viewtype&gt;.html (blog/post_list.html)</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;blog/home.html&#39;</span>
+    <span class="c1"># Override context name to replace &lt;model&gt;_&lt;viewtype&gt; (post_list).</span>
+    <span class="n">context_object_name</span> <span class="o">=</span> <span class="s1">&#39;posts&#39;</span>
+    <span class="c1"># order from posts from last to first.</span>
+    <span class="n">ordering</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-date_posted&#39;</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="PostDetailView">
+<a class="viewcode-back" href="../../blog.html#blog.views.PostDetailView">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PostDetailView</span><span class="p">(</span><span class="n">DetailView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Create PostDetailView class which inherits from django&#39;s DetailView.</span>
+<span class="sd">    No modification to Django&#39;s standard view.</span>
+<span class="sd">    :param function DetailView: Django&#39;s DetailView.</span>
+<span class="sd">    :returns: A post.</span>
+<span class="sd">    :return type: object.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Post</span></div>
+
+
+
+<div class="viewcode-block" id="PostCreateView">
+<a class="viewcode-back" href="../../blog.html#blog.views.PostCreateView">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PostCreateView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">CreateView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Create PostCreateView class which inherits from django&#39;s CreateView.</span>
+<span class="sd">    :param function LoginRequiredMixin CreateView: Django functions.</span>
+<span class="sd">    :returns: a new post.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Post</span>
+    <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="PostCreateView.form_valid">
+<a class="viewcode-back" href="../../blog.html#blog.views.PostCreateView.form_valid">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">form_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        This method will populate the author name to the Post before</span>
+<span class="sd">        form validation, since the data in the form is cleared post</span>
+<span class="sd">        validation.</span>
+<span class="sd">        :returns: an updated form.</span>
+<span class="sd">        :return type: object</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">form</span><span class="o">.</span><span class="n">instance</span><span class="o">.</span><span class="n">author</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">form_valid</span><span class="p">(</span><span class="n">form</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="PostUpdateView">
+<a class="viewcode-back" href="../../blog.html#blog.views.PostUpdateView">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PostUpdateView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">UserPassesTestMixin</span><span class="p">,</span> <span class="n">UpdateView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Create PostUpdateView class which inherits from django&#39;s UpdateView.</span>
+<span class="sd">    :param function LoginRequiredMixin UserPassesTestMixin CreateView: Django functions.</span>
+<span class="sd">    :returns: an updated post.</span>
+<span class="sd">    :return type: object</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Post</span>
+    <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="PostUpdateView.form_valid">
+<a class="viewcode-back" href="../../blog.html#blog.views.PostUpdateView.form_valid">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">form_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        This method will populate the author name to the Post before</span>
+<span class="sd">        form validation, since the data in the form is cleared post</span>
+<span class="sd">        validation.</span>
+<span class="sd">        :param form object: user form.</span>
+<span class="sd">        :returns: an updated form.</span>
+<span class="sd">        :return type: object</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">form</span><span class="o">.</span><span class="n">instance</span><span class="o">.</span><span class="n">author</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">form_valid</span><span class="p">(</span><span class="n">form</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PostUpdateView.test_func">
+<a class="viewcode-back" href="../../blog.html#blog.views.PostUpdateView.test_func">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_func</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        This method tests if the user updating the post is the creator.</span>
+<span class="sd">        :param: none</span>
+<span class="sd">        :returns: Status code.</span>
+<span class="sd">        :return type: Boolean.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">post</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_object</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span> <span class="o">==</span> <span class="n">post</span><span class="o">.</span><span class="n">author</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="PostDeleteView">
+<a class="viewcode-back" href="../../blog.html#blog.views.PostDeleteView">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PostDeleteView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">UserPassesTestMixin</span><span class="p">,</span> <span class="n">DeleteView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Create PostDeleteView class which inherits from django&#39;s DeleteView.</span>
+<span class="sd">    :param function LoginRequiredMixin UserPassesTestMixin DeleteView: Django functions.</span>
+<span class="sd">    :returns: an updated post.</span>
+<span class="sd">    :return type: object</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Post</span>
+
+    <span class="n">success_url</span> <span class="o">=</span> <span class="s1">&#39;/blog/&#39;</span>  <span class="c1"># from project root.</span>
+
+<div class="viewcode-block" id="PostDeleteView.test_func">
+<a class="viewcode-back" href="../../blog.html#blog.views.PostDeleteView.test_func">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_func</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        This method tests if the user deleting the post is the creator.</span>
+<span class="sd">        :param: none</span>
+<span class="sd">        :returns: Status code 403 Forbidden</span>
+<span class="sd">        :return type: Boolean.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">post</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_object</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span> <span class="o">==</span> <span class="n">post</span><span class="o">.</span><span class="n">author</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># returns status code 403 forbidden.</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Tshepo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

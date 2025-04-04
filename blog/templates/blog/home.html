@@ -1,0 +1,27 @@
+{% extends 'webapp/base.html' %}
+
+{% block title %}
+Blog - Scorpion Kings
+{% endblock title %}
+
+{% block content %}
+  <div class="container my-5">
+    <h1 style="text-align: center; ">Blog Home</h1>
+    {% comment %} 
+    Iterate through posts and present each post on the page.
+    {% endcomment %}
+    {% for post in posts %}
+    <div class="col-md-6 mt-3">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h4 class="card-title"> <a href="{% url 'post-detail' post.id %}" > {{ post.title }} </a> </h4>
+          <p class="card-subtitle text-muted">
+            Written by <strong>{{ post.author }}</strong> on {{ post.date_posted|date:"F j, Y" }}
+          </p>
+          <p class="card-text mt-3">{{ post.content }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endblock content %}

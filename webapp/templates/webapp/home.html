@@ -1,0 +1,139 @@
+{% extends 'webapp/base.html' %}
+{% load static %}
+
+{% block title %}
+Home - Scorpion Kings
+{% endblock %}
+
+{% block content %}
+  <div class="container my-5">
+    <h1 style="text-align: center; ">AMAPIANO GROOVES</h1>
+    <h5 style="text-align: center; " >THE NEW ALBUM - OUT NOW!!</h5>
+  </div>
+
+  <!-- Slideshow container -->
+  <div class="slideshow-container">
+    <!-- Slide 1 -->
+    <div class="slides">
+        <img src="{% static 'webapp/duo_1.jpg' %}" alt="Slide 1" class="image">
+    </div>
+    <!-- Slide 2 -->
+    <div class="slides">
+        <img src="{% static 'webapp/scorpion_1.jpg' %}" alt="Slide 2" class="image">
+    </div>
+    <!-- Slide 3 -->
+    <div class="slides">
+        <img src="{% static 'webapp/festival_1.jpg' %}" alt="Slide 3" class="image">
+    </div>
+    <!-- Slide 4 -->
+    <div class="slides">
+        <img src="{% static 'webapp/duo_2.jpg' %}" alt="Slide 4" class="image">
+    </div>
+     <!-- Slide 5 -->
+     <div class="slides">
+        <img src="{% static 'webapp/duo_3.jpg' %}" alt="Slide 5" class="image">
+    </div>
+
+</div>
+
+<!-- Navigation dots -->
+<div class="dots">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+    <span class="dot" onclick="currentSlide(4)"></span>
+    <span class="dot" onclick="currentSlide(5)"></span>
+</div>
+
+<!-- Slideshow Script -->
+<script>
+    let slideIndex = 0;
+    showSlides();
+
+    // Automatically show slides
+    function showSlides() {
+        const slides = document.getElementsByClassName("slides");
+        const dots = document.getElementsByClassName("dot");
+
+        // Hide all slides
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+
+        // Increment slide index
+        slideIndex++;
+        if (slideIndex > slides.length) slideIndex = 1;
+
+        // Remove active class from all dots
+        for (let i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+
+        // Show current slide and activate the corresponding dot
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+
+        // Repeat after 3 seconds
+        setTimeout(showSlides, 5000);
+    }
+
+    // Navigate to a specific slide
+    function currentSlide(index) {
+        slideIndex = index - 1;
+        showSlides();
+    }
+</script>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Upcoming Tours</h2>
+    <div class="row row-cols-1 row-cols-md-2 g-4 mb-4">
+        <!-- Tour Card 1 -->
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Date: April 15, 2025</h5>
+                    <p class="card-text">Country: South Africa</p>
+                    <p class="card-text">Venue: Johannesburg Stadium</p>
+                    <p class="card-text text-success">Tickets: Available</p>
+                </div>
+            </div>
+        </div>
+        <!-- Tour Card 2 -->
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Date: May 1, 2025</h5>
+                    <p class="card-text">Country: Namibia</p>
+                    <p class="card-text">Venue: Windhoek Concert Hall</p>
+                    <p class="card-text text-danger">Tickets: Sold Out</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-2 g-4 mb-4">
+        <!-- Tour Card 3 -->
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Date: June 15, 2025</h5>
+                    <p class="card-text">Country: Tanzania</p>
+                    <p class="card-text">Venue: Zanzibar Arena</p>
+                    <p class="card-text text-success">Tickets: Available</p>
+                </div>
+            </div>
+        </div>
+        <!-- Tour Card 4 -->
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Date: December 27, 2025</h5>
+                    <p class="card-text">Country: Namibia</p>
+                    <p class="card-text">Venue: Windhoek Concert Hall</p>
+                    <p class="card-text text-danger">Tickets: Sold Out</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

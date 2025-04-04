@@ -1,0 +1,22 @@
+{% extends 'webapp/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    User - Login
+{% endblock title %}
+
+{% block content %}
+    <div class="container my-4 col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="d-flex align-items-center">              
+                    <!-- User Details -->
+                    <div>
+                        <h2 class="h5 mb-0">{{ user.username }}</h2>
+                        <p class="text-muted mb-0">{{ user.email }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

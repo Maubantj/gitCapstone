@@ -1,0 +1,22 @@
+{% extends 'webapp/base.html' %}
+
+{% block title %}
+    Blog Delete
+{% endblock title %}
+
+{% block content %}
+    <div class="container my-4">
+        <h1 style="text-align: center; "> Delete Post </h1>
+        <h3> Are you sure you want to delete the post? {{ object.title }}</h3>
+    </div>
+    <div class="container my-4">
+        {% comment %} 
+        Create form to send post instruction to delete view.
+        {% endcomment %}
+        <form action="{% url 'post-delete' object.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a class="btn btn-secondary" href="{% url 'post-detail' object.id %}">Cancel</a>
+        </form>    
+    </div> 
+{% endblock content %}

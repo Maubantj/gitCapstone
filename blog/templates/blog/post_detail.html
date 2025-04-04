@@ -1,0 +1,29 @@
+{% extends 'webapp/base.html' %}
+
+{% block title %}
+Blog - Scorpion Kings
+{% endblock title %}
+
+{% block content %}
+    <div class="container my-5"> 
+        <div class="col-md-6 mt-3">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h4 class="card-title">{{ object.title }}</h4>
+                    <p class="card-subtitle text-muted">
+                        Written by <strong>{{ object.author }}</strong> on {{ post.date_posted|date:"F j, Y" }}
+                    </p>
+                    {% comment %} 
+                    Activate delete and update button if user is logged in,
+                    and if post is created by logged in user.
+                    {% endcomment %}
+                    {%if object.author == user %}
+                        <a class = "btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}"> Update </a>
+                        <a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}"> Delete </a>
+                    {% endif %}
+                    <p class="card-text mt-3">{{ object.content }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
