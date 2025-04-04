@@ -3,7 +3,7 @@
 *.pyo
 __pycache__/
 
-# Virtual environment
+# Virtual environment, please include name of your venv.
 myvenv/
 env/
 
