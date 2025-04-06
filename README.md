@@ -48,6 +48,5 @@ Hub by running *docker tag "local image name" username/remote repo name*.
 the following in the command prompt *pip install -r requirements.txt*.
 
 
-
 ## 4. Credits
 This file was created by only Tshepo Maubane.
