@@ -26,7 +26,22 @@ You should see a message that the server is running at http://127.0.0.1:8000/.
 Open your browser and go to this URL.
 
 ## 2. Running Docker.
-1. 
+1. Dockerfile has already been created on your behalf in ****.
+2. Create docker image by typing the following in the command prompt,
+*docker build -t "name of your image" ./*. Please ensure Docker desktop 
+is open before running this command.
+3. Run the image with this command, 
+*docker run -d -p 80:80 "name of your image"*
+4. Go to http://localhost to confirm that the image is running.
+5. To deploy the image go to Docker Hub (https://hub.docker.com), click
+a create repository and name it.
+6. Rename the image on your local repository to match the image on Docker
+Hub by running *docker tag "local image name" username/remote repo name*.
+7. Login to Docker and push the local image using the two commands:
+*docker login*
+*docker push username/remote repo name 
+8. Test the website on a virtual machine. Visit  https://labs.play-with-docker.com/
+
 
 ## 3. Other system requirements
 1. To install dependencies listed in the requirements.txt file, type
