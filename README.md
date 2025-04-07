@@ -17,7 +17,7 @@ pertaining to the band.
 2. To check if you have python installed open the command prompt and type
 *python --version*.
 3. Go to the root directory and type 
-*python -m venv "name of your virtual environment"*
+*python -m venv "name of your virtual environment"*.
 4. Activate the virtual environment using the following command,
 *name of your virtual environment"\Scripts\activate.bat*.
 5. To run the development server type
@@ -31,7 +31,7 @@ Open your browser and go to this URL.
 *docker build -t "name of your image" ./*.
 Please ensure Docker desktop is open before running this command.
 4. Run the image with this command, 
-*docker run -d -p 8080:8000 "name of your image"*
+*docker run -d -p 8080:8000 "name of your image"*.
 5. Go to http://localhost:8080 to confirm that the image is running.
 6. To deploy the image go to Docker Hub (https://hub.docker.com), click
 a create repository and name it.
