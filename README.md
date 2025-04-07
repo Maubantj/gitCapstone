@@ -13,7 +13,7 @@ pertaining to the band.
 4. Credits
 
 ## 1. Create and activate a virtual environment.
-1. Ensure you have python installed on your machine/
+1. Ensure you have python installed on your machine.
 2. To check if you have python installed open the command prompt and type
 *python --version*.
 3. Go to the root directory and type 
@@ -31,7 +31,7 @@ Open your browser and go to this URL.
 *docker build -t "name of your image" ./*. Please ensure Docker desktop 
 is open before running this command.
 3. Run the image with this command, 
-*docker run -d -p 80:80 "name of your image"*
+*docker run -d -p 8080:8000 "name of your image"*
 4. Go to http://localhost to confirm that the image is running.
 5. To deploy the image go to Docker Hub (https://hub.docker.com), click
 a create repository and name it.
@@ -42,11 +42,9 @@ Hub by running *docker tag "local image name" username/remote repo name*.
 *docker push username/remote repo name 
 8. Test the website on a virtual machine. Visit  https://labs.play-with-docker.com/
 
-
 ## 3. Other system requirements
 1. To install dependencies listed in the requirements.txt file, type
 the following in the command prompt *pip install -r requirements.txt*.
-
 
 ## 4. Credits
 This file was created by only Tshepo Maubane.
