@@ -9,8 +9,8 @@ pertaining to the band.
 ## Table of contents
 1. Create and activate a virtual environment.
 2. Running Docker.
-3. Other system requirements
-4. Credits
+3. Other system requirements.
+4. Credits.
 
 ## 1. Create and activate a virtual environment.
 1. Ensure you have python installed on your machine.
